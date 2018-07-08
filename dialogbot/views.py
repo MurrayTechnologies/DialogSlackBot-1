@@ -100,7 +100,7 @@ class CommandView(SlackMixin, View):
             return HttpResponse(status=200)
         return method()
 
-    def dialog_command(self):
+    def interrupt_command(self):
         resolution_times = [1, 4, 8, 12]
         types = ['Interruption', 'Service Outage']
         categories = Category.objects.values_list('title',flat=True) or ['sample_category']
