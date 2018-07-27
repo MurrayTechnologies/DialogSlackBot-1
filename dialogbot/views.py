@@ -136,22 +136,6 @@ class InteractionView(SlackMixin, View):
         requests.post(self.data['response_url'], data=json.dumps(message))
         return HttpResponse(status=200)
 
-    def createJiraIssue():
-    activeSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-    jsonStr = '{"fields": {"customfield_10007" : "19244", "project": {"key": "PKI"},"summary": "Test","issuetype": {"id": 8},"labels": ["Interruption","PKIDev"],"description": "this is a text area. big text", "reporter" : {"name" : "mmurray"}, "assignee" : {"name" : "mmurray"}}}'
-    transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
-    transitionStr = '{"transition": {"id": "251"}}'
-
-    currentSprint = getResults(activeSprint)
-    ll = json.loads(jsonStr)
-    print (ll)
-    response = postResponse(basejiraurl + createjira, jsonStr)
-    print (response.content, response.status_code)
-    if response.status_code == 201:
-        rr = json.loads(response.content)
-        print (rr)
-        print (transitionurl.format(key=rr['key']))
-        postResponse(transitionurl.format(key=rr['key']), transitionStr)
 
 def get_attachments(submission):
     fields = [
