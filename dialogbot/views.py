@@ -127,6 +127,7 @@ class InteractionView(SlackMixin, View):
         return method()
 
     def handle_category(self):
+        print (self.data)
         submission = self.data['submission']
         username = self.data['user']['name']
         message = {
