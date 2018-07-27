@@ -133,7 +133,7 @@ class InteractionView(SlackMixin, View):
             'text': f"Category Submission Success by `{username}`",
             'attachments': get_attachments(submission)
         }
-        createJiraIssue()
+        self.createJiraIssue()
         requests.post(self.data['response_url'], data=json.dumps(message))
 
         return HttpResponse(status=200)
