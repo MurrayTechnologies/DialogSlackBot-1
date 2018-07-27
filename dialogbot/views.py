@@ -144,16 +144,32 @@ class InteractionView(SlackMixin, View):
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
         transitionStr = '{"transition": {"id": "251"}}'
 
-        currentSprint = getResults(activeSprint)
+        currentSprint = self.getResults(activeSprint)
         ll = json.loads(jsonStr)
         print (ll)
-        response = postResponse(basejiraurl + createjira, jsonStr)
+        response = self.postResponse(basejiraurl + createjira, jsonStr)
         print (response.content, response.status_code)
+        
         if response.status_code == 201:
             rr = json.loads(response.content)
             print (rr)
             print (transitionurl.format(key=rr['key']))
-            postResponse(transitionurl.format(key=rr['key']), transitionStr)
+            self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
+
+    def getResults(self, url):
+        headers = {"Accept": "application/json", "Content-Type": "application/json",
+                   "Authorization": "Basic MDJkODQ4NnJ5NWhBOlduNDEjWSViNW18X3Ez"}
+        r = requests.get(url, headers=headers);
+
+        return json.loads(r.content)
+
+    def postResponse(self, url, body):
+        headers = {"Accept": "application/json", "Content-Type": "application/json",
+                   "Authorization": "Basic MDJkODQ4NnJ5NWhBOlduNDEjWSViNW18X3Ez"}
+        print (body)
+        r = requests.post(url, headers=headers, data=body);
+        print (r)
+        return r
 
 
 def get_attachments(submission):
