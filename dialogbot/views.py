@@ -158,7 +158,7 @@ class InteractionView(SlackMixin, View):
         currentSprint = self.getResults(activeSprint)
         labels = ['Interruption', 'PKIDev']
         labels.append(submission['category_1'])
-        fmtData = issueJson.format(sprint=currentSprint['values'][0]['id'], summary=submission['description'].substring(20), labels=labels, description=submission['description'], username=username)
+        fmtData = issueJson.format(sprint=currentSprint['values'][0]['id'], summary=submission['description'], labels=labels, description=submission['description'], username=username)
         print (fmtData)
         ll = json.loads(jsonStr)
         print (ll)
