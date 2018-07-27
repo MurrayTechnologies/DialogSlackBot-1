@@ -156,10 +156,7 @@ class InteractionView(SlackMixin, View):
         username = self.data['user']['name']
 
         currentSprint = self.getResults(activeSprint)
-        labels = ['Interruption', 'PKIDev']
-        labels.append(submission['category_1'])
-        fmtData = issueJson.format(sprint=currentSprint['values'][0]['id'], summary=submission['description'], labels=labels, description=submission['description'], username=username)
-        print (fmtData)
+
         ll = json.loads(jsonStr)
         print (ll)
         response = self.postResponse(basejiraurl + createjira, jsonStr)
