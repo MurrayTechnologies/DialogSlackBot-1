@@ -200,7 +200,7 @@ class InteractionView(SlackMixin, View):
         return rr['key']
 
     def populateStoryPoints(self):
-        time = int(self.data['resolution_time'])
+        time = int(self.data['submission']['resolution_time'])
         if time == 1:
             return 1
 
