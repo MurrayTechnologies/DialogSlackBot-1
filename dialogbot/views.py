@@ -104,13 +104,13 @@ class CommandView(SlackMixin, View):
         resolution_times = [1, 4, 8, 12]
         types = ['Interruption', 'Service Outage']
         categories = Category.objects.values_list('title',flat=True) or ['sample_category']
-        sorted(categories)
-
+        sortedCategories = sorted(categories)
+        sortedCategories.insert(0, 'None')
 
         payload = {
             'token': self.team.bot_access_token,
             'trigger_id': self.data['trigger_id'],
-            'dialog': json.dumps(category_form(resolution_times, types, categories))
+            'dialog': json.dumps(category_form(resolution_times, types, sortedCategories))
         }
         response =  requests.post('https://slack.com/api/dialog.open', params=payload)
         return HttpResponse(status=200)
