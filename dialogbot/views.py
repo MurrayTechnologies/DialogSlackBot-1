@@ -139,7 +139,7 @@ class InteractionView(SlackMixin, View):
         jiraKey = self.createJiraIssue()
 
         newjira = jiralink.format(key=jiraKey)
-
+        print (newjira)
         message = {
             'text': "Jira Link: `{newjira}` ",
             'attachments': get_attachments(submission)
@@ -150,6 +150,7 @@ class InteractionView(SlackMixin, View):
             'text': "Category Submission Success by `{username}`",
             'text': jiralink.format(key=jiraKey)
         }
+
         requests.post(self.data['response_url'], data=json.dumps(message))
 
         return HttpResponse(status=200)
