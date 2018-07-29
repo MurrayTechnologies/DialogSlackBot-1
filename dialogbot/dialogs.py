@@ -10,12 +10,6 @@ def category_form(resolution_times, types, categories):
         "submit_label": 'Submit',
         "elements": [
             {
-                "label": "Summary",
-                "name": "summary",
-                "placeholder": "Summary",
-                "type": "text",
-            },
-            {
                 "label": "Description",
                 "name": "description",
                 "placeholder": "Description",

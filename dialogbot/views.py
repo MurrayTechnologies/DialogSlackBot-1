@@ -139,7 +139,7 @@ class InteractionView(SlackMixin, View):
         jiraKey = self.createJiraIssue()
 
         message = {
-            'text': "Category Submission Success by `{username}`",
+            'text': "Category Submission Success by `{username}`: ",
             'attachments': get_attachments(submission)
         }
 
@@ -176,7 +176,7 @@ class InteractionView(SlackMixin, View):
                 "customfield_10004" : self.populateStoryPoints(),
                 "customfield_10007" : currentSprint['values'][0]['id'],
                 "project": {"key": "PKI"},
-                "summary": "Interruption: " + submission['summary'],
+                "summary": "Interruption: " + submission['description'],
                 "issuetype": {"id": 8},
                 "labels": labels,
                 "description": desc,
@@ -217,7 +217,7 @@ class InteractionView(SlackMixin, View):
             return 8
 
         return 1
-        
+
     def retrieveCategoryLabels(self, labels):
         submission = self.data['submission']
         if submission['category_1'] != 'None':
