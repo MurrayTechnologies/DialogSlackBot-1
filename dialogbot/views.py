@@ -176,7 +176,7 @@ class InteractionView(SlackMixin, View):
                 "customfield_10004" : self.populateStoryPoints(),
                 "customfield_10007" : currentSprint['values'][0]['id'],
                 "project": {"key": "PKI"},
-                "summary": "Interruption: " + submission['description'],
+                "summary": "Interruption: " + submission['summary'],
                 "issuetype": {"id": 8},
                 "labels": labels,
                 "description": desc,
@@ -223,8 +223,8 @@ class InteractionView(SlackMixin, View):
         if submission['category_1'] != 'None':
             labels.append(submission['category_1'])
 
-        if submission['category_2'] != 'None':
-            labels.append(submission['category_2'])
+        #if submission['category_2'] != 'None':
+        #    labels.append(submission['category_2'])
 
         return labels
 
