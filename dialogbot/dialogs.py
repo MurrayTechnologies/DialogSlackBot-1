@@ -6,9 +6,15 @@ def category_form(resolution_times, types, categories):
 
     return {
         "callback_id": 'category',
-        "title": 'Category Dialog',
+        "title": 'Interruption Logger',
         "submit_label": 'Submit',
         "elements": [
+            {
+                "label": "Summary",
+                "name": "summary",
+                "placeholder": "Summary",
+                "type": "text",
+            },
             {
                 "label": "Description",
                 "name": "description",
