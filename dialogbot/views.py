@@ -185,10 +185,10 @@ class InteractionView(SlackMixin, View):
             }
         }
 
-        print (x)
+        print (json.dumps(x))
         #ll = json.loads(jsonStr)
 
-        response = self.postResponse(createjira, x)
+        response = self.postResponse(createjira, json.dumps(x))
         print (response.content, response.status_code)
 
         if response.status_code == 201:
