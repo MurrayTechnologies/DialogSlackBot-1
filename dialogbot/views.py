@@ -171,6 +171,10 @@ class InteractionView(SlackMixin, View):
         labels = self.retrieveTeamLabels(labels, username)
 
         desc = submission['description']
+
+        if username == 'ppettong':
+            username = 'ppeachthong'
+
         x = {
             "fields":
             {
@@ -185,6 +189,7 @@ class InteractionView(SlackMixin, View):
                 "assignee" : {"name" : username}
             }
         }
+
 
         #print (json.dumps(x))
         #ll = json.loads(jsonStr)
@@ -230,7 +235,7 @@ class InteractionView(SlackMixin, View):
         return labels
 
     def retrieveTeamLabels(self, labels, username):
-        pki_ops = ['jstack', 'jdarr', 'dwilliams1', 'jdhurano', 'ddubovik']
+        pki_ops = ['jstack', 'jdarr', 'dwilliams1', 'jdhurano', 'ddubovik', 'tgraham']
         team_snafu = ['astokes', 'mxpatterson', 'rjasmin']
         team_skittlebräu = ['ahough', 'ppettong', 'jgorz', 'schang']
         team_fu = ['rmartin', 'adharamsey', 'asink', 'mmurray']
