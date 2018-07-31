@@ -131,7 +131,7 @@ class InteractionView(SlackMixin, View):
         return method()
 
     def handle_category(self):
-        print (self.data)
+        #print (self.data)
         jiralink = 'https://jira.godaddy.com/browse/{key}'
         submission = self.data['submission']
         username = self.data['user']['name']
@@ -145,7 +145,7 @@ class InteractionView(SlackMixin, View):
             'attachments': get_attachments(submission)
         }
 
-        print (message)
+        #print (message)
         message1 = {
             'text': "Category Submission Success by `{username}`",
             'text': jiralink.format(key=jiraKey)
@@ -186,7 +186,7 @@ class InteractionView(SlackMixin, View):
             }
         }
 
-        print (json.dumps(x))
+        #print (json.dumps(x))
         #ll = json.loads(jsonStr)
 
         response = self.postResponse(createjira, json.dumps(x))
@@ -194,7 +194,7 @@ class InteractionView(SlackMixin, View):
 
         if response.status_code == 201:
             rr = json.loads(response.content)
-            print (rr)
+            #print (rr)
 
             self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
 
@@ -262,9 +262,9 @@ class InteractionView(SlackMixin, View):
     def postResponse(self, url, body):
         headers = {"Accept": "application/json", "Content-Type": "application/json",
                    "Authorization": "Basic MDJkODQ4NnJ5NWhBOlduNDEjWSViNW18X3Ez"}
-        print (body)
+        #print (body)
         r = requests.post(url, headers=headers, data=body);
-        print (r)
+        #print (r)
         return r
 
 

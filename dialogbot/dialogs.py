@@ -19,7 +19,7 @@ def category_form(resolution_times, types, categories):
                 "label": "Description",
                 "name": "description",
                 "placeholder": "Description",
-                "type": "text",
+                "type": "textarea",
             },
             {
                 "label": "Resolution Time(Hours)",
