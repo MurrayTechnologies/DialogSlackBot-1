@@ -235,7 +235,7 @@ class InteractionView(SlackMixin, View):
         return labels
 
     def retrieveTeamLabels(self, labels, username):
-        pki_ops = ['jstack', 'jdarr', 'dwilliams1', 'jdhurano', 'ddubovik', 'tgraham']
+        pki_ops = ['jstack', 'jdarr', 'dwilliams1', 'jdharano', 'ddubovik', 'tgraham']
         team_snafu = ['astokes', 'mxpatterson', 'rjasmin']
         team_skittlebräu = ['ahough',  'jgorz', 'schang']
         team_fu = ['rmartin', 'adharamsey', 'ppettong', 'mmurray']
