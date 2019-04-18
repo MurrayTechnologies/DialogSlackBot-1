@@ -244,7 +244,7 @@ class InteractionView(SlackMixin, View):
             return labels
 
         if username in team_feature_a:
-            labels.append('TeamFeatureA')
+            labels.append('TeamFeatureFreaks')
 
         if username in team_prod:
             labels.append('TeamProd')
