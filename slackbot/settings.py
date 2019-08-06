@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_rq',
     'dialogbot',
 ]
 
@@ -162,3 +163,14 @@ DIALOG_APP = {
     "scopes": env.str('DIALOGAPP_SCOPES', ''),
     "verification_token": env.str('DIALOGAPP_VERIFICATION_TOKEN', '')
 }
+
+# For django rq
+RQ_QUEUES = {
+    "default": {
+        "URL": os.getenv(
+            "REDIS_URL", "redis://localhost:6379/0"
+        ),  # If you're on Heroku
+        "DEFAULT_TIMEOUT": 360,
+    }
+}
+

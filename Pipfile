@@ -1,3 +1,4 @@
+
 [[source]]
 verify_ssl = true
 url = "https://pypi.org/simple"
@@ -11,7 +12,8 @@ python_version = "3.6"
 [packages]
 django = "*"
 django-environ = "*"
-slackclient = "*"
+slackclient = "~=1.0.9"
 gunicorn = "*"
 "psycopg2" = "*"
 whitenoise = "*"
+django-rq = "==2.0"
