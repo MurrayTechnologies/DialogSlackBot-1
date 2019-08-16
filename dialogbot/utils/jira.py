@@ -88,19 +88,23 @@ class JiraHandler(object):
         return labels
 
     def retrieveTeamLabels(self, labels, username):
-        pki_ops = ['jstack', 'jdarr', 'dwilliams1', 'jdharano', 'ddubovik', 'tgraham', 'glopez']
-        team_feature_a = ['rmartin', 'astokes', 'mxpatterson', 'ppettong']
-        team_prod = ['ahough','jgorz','schang','rjasmin','lcurran','bhodge']
+        pki_ops = ['jstack', 'dwilliams1', 'jdharano', 'ddubovik', 'tgraham', 'glopez']
+        team_experience = ['sdeitte', 'ppettong', 'schang', 'jkramer1']
+        team_dev_ops = ['astokes', 'bhodge', 'lcurran', 'jgorz']
+        team_integration = ['rjasmin','mxpatterson','jpogue','rmartin', 'achiliveri']
 
         if username in pki_ops:
             labels.append('PKIOps')
             return labels
 
-        if username in team_feature_a:
-            labels.append('TeamFeatureFreaks')
+        if username in team_experience:
+            labels.append('TeamExperience')
 
-        if username in team_prod:
-            labels.append('TeamProd')
+        if username in team_dev_ops:
+            labels.append('TeamDevOps')
+        
+        if username in team_integration:
+            labels.append('TeamIntegration')
 
         labels.append('PKIDev')
 
