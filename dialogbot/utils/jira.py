@@ -90,7 +90,7 @@ class JiraHandler(object):
     def retrieveTeamLabels(self, labels, username):
         pki_ops = ['jstack', 'dwilliams1', 'jdharano', 'ddubovik', 'tgraham', 'glopez']
         team_experience = ['sdeitte', 'ppettong', 'schang', 'jkramer1']
-        team_dev_ops = ['astokes', 'bhodge', 'lcurran', 'jgorz']
+        team_dev_ops = ['astokes', 'bhodge1', 'lcurran', 'jgorz']
         team_integration = ['rjasmin','mxpatterson','jpogue','rmartin', 'achiliveri']
 
         if username in pki_ops:
