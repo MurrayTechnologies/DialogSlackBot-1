@@ -10,6 +10,7 @@ class JiraHandler(object):
 
     def createJiraIssue(self):
         activeSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        futureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
 
         #transition to done
@@ -28,11 +29,16 @@ class JiraHandler(object):
         if username == 'ppettong':
             username = 'ppeachthong'
 
+        if currentSprint['values']:
+            sprintId = currentSprint['values'][0]['id']
+        else:
+            futureSprint1 = self.getResults(futureSprint)
+            sprintId = futureSprint1['values'][0]['id']
         x = {
             "fields":
             {
                 "customfield_10004" : self.populateStoryPoints(),
-                "customfield_10007" : currentSprint['values'][0]['id'],
+                "customfield_10007" : sprintId,
                 "project": {"key": "PKI"},
                 "summary": "Interruption: " + submission['summary'],
                 "issuetype": {"id": 8},
