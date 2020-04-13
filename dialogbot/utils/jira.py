@@ -96,8 +96,8 @@ class JiraHandler(object):
     def retrieveTeamLabels(self, labels, username):
        
         team_experience = ['sdeitte', 'ppettong', 'schang', 'jkramer1', 'mgilhool', 'jdjensen', 'meljuga']
-        team_dev_ops = ['astokes', 'bhodge1', 'lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
-        team_integration = ['rjasmin','mxpatterson','jpogue','rmartin', 'achiliveri','jstack']
+        team_dev_ops = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
+        team_integration = ['rjasmin','mxpatterson','jpogue','rmartin', 'achiliveri','jstack', 'bhodge1','astokes']
 
         if username in team_experience:
             labels.append('TeamPseudocode')
