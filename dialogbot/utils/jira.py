@@ -84,7 +84,7 @@ class JiraHandler(object):
                 transitionStr = '{"transition": {"id": "31"}}'
                 self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
             else:
-                transitionStr = '{"transition": {"id": "3"}}'
+                transitionStr = '{"transition": {"id": "5"}}'
                 self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
 
         return rr['key']
