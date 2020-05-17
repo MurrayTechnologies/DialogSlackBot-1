@@ -12,26 +12,8 @@ class JiraHandler(object):
         activeSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
         futureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
-
-        #PKIPLAT
-        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-        platfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         
-        #PKICLIENT
-        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-        platfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
-        
-        #PKIAPI
-        apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-        apifutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
-        
-        #PKISRE
-        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-        srefutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
-        
-        #MSSL
-        msslactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
-        msslfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        jiraproj = self.defineTeam(username)
         
         #transition to done
         transitionStr = '{"transition": {"id": "251"}}'
@@ -59,7 +41,7 @@ class JiraHandler(object):
             {
                 "customfield_10004" : self.populateStoryPoints(),
                 "customfield_10007" : sprintId,
-                "project": {"key": "PKI"},
+                "project": {"key": jiraproj},
                 "summary": "Interruption: " + submission['summary'],
                 "issuetype": {"id": 8},
                 "labels": labels,
@@ -102,7 +84,25 @@ class JiraHandler(object):
             return 8
 
         return 1
+    def defineTeam(self, username):
+        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
+        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
+        client = ['mxpatterson', 'rmartin', 'bfeddern']
+        mssl = ['kcrawford', 'ycampo']
+        api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
+        
+         if username in plat:
+            return "PKIPLAT"
 
+        if username in client:
+            return "PKICLIENT"
+        
+        if username in api:
+            return "PKIAPI"
+        
+        if username in mssl:
+            return "MSSL"
+        
     def retrieveActiveSprint(self, username):
         plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
