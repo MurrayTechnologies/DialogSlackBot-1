@@ -104,7 +104,7 @@ class JiraHandler(object):
         return 1
 
     def retrieveActiveSprint(self, username):
-        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri']
+        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
         client = ['mxpatterson', 'rmartin', 'bfeddern']
         mssl = ['kcrawford', 'ycampo']
