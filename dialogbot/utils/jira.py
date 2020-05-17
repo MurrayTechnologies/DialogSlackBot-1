@@ -181,7 +181,7 @@ class JiraHandler(object):
     
     def retrieveDoneTransitionId(self,team):
         if team == "PKISRE":
-            return "3"
+            return "10"
         
         return "31"
 
