@@ -80,7 +80,7 @@ class JiraHandler(object):
             rr = json.loads(response.content)
             #print (rr)
             
-            if team != "PKISRE":
+            if jiraproj != "PKISRE":
                 transitionStr = '{"transition": {"id": "31"}}'
                 self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
             else:
