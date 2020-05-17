@@ -15,12 +15,15 @@ class JiraHandler(object):
         
       
         #transition to done
-        transitionStr = '{"transition": {"id": "31"}}'
+        
         createjira = 'https://jira.godaddy.com/rest/api/2/issue'
         submission = self.data['submission']
         username = self.data['user']['name']
 
         jiraproj = self.defineTeam(username)
+        
+        transitionId = self.retrieveDoneTransitionId(jiraproj)
+        transitionStr = '{"transition": {"id": "31"}}'
         currentSprint = self.getResults(self.retrieveSprint(username, "active"))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
@@ -102,7 +105,7 @@ class JiraHandler(object):
         return 1
     
     def defineTeam(self, username):
-        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
+        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri','mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
         client = ['mxpatterson', 'rmartin', 'bfeddern']
         mssl = ['kcrawford', 'ycampo']
@@ -173,7 +176,7 @@ class JiraHandler(object):
         return labels
     
     def retrieveDoneTransitionId(self,team):
-        if team == "PKISRE"
+        if team == "PKISRE":
             return "3"
         
         return "31"
