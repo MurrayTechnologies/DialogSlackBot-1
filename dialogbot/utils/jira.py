@@ -173,17 +173,10 @@ class JiraHandler(object):
         return labels
     
     def retrieveDoneTransitionId(self,team):
-        if username in plat:
-            return "31"
-
-        if username in client:
-            return "31"
+        if team == "PKISRE"
+            return "3"
         
-        if username in api:
-            return "31"
-        
-        if username in mssl:
-            return "31" 
+        return "31"
 
     def retrieveTeamLabels(self, labels, username):
        
