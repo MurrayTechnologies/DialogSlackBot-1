@@ -13,8 +13,7 @@ class JiraHandler(object):
         futureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
         
-       
-        
+      
         #transition to done
         transitionStr = '{"transition": {"id": "31"}}'
         createjira = 'https://jira.godaddy.com/rest/api/2/issue'
@@ -25,7 +24,7 @@ class JiraHandler(object):
         currentSprint = self.getResults(self.retrieveSprint(username, "active"))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
-        labels = self.retrieveTeamLabels(labels, username)
+        #labels = self.retrieveTeamLabels(labels, username)
 
         desc = submission['description']
 
@@ -37,23 +36,39 @@ class JiraHandler(object):
         else:
             futureSprint1 = self.getResults(self.retrieveSprint(username, "future"))
             sprintId = futureSprint1['values'][0]['id']
-        x = {
-            "fields":
-            {
-                "customfield_10004" : self.populateStoryPoints(),
-                "customfield_10007" : sprintId,
-                "project": {"key": jiraproj},
-                "summary": "Interruption: " + submission['summary'],
-                "issuetype": {"id": 8},
-                "labels": labels,
-                "description": desc,
-                "reporter" : {"name" : username},
-                "assignee" : {"name" : username}
+        
+        if jiraproj != "PKISRE":
+            x = {
+                "fields":
+                {
+                    "customfield_10004" : self.populateStoryPoints(),
+                    "customfield_10007" : sprintId,
+                    "project": {"key": jiraproj},
+                    "summary": "Interruption: " + submission['summary'],
+                    "issuetype": {"id": 8},
+                    "labels": labels,
+                    "description": desc,
+                    "reporter" : {"name" : username},
+                    "assignee" : {"name" : username}
+                }
             }
-        }
+         else:
+            x = {
+                "fields":
+                {
+                    "customfield_10004" : self.populateStoryPoints(),
+                    "project": {"key": jiraproj},
+                    "summary": "Interruption: " + submission['summary'],
+                    "issuetype": {"id": 8},
+                    "labels": labels,
+                    "description": desc,
+                    "reporter" : {"name" : username},
+                    "assignee" : {"name" : username}
+                }
+            }
 
 
-        #print (json.dumps(x))
+        print (json.dumps(x))
         #ll = json.loads(jsonStr)
 
         response = self.postResponse(createjira, json.dumps(x))
@@ -105,6 +120,9 @@ class JiraHandler(object):
         if username in mssl:
             return "MSSL"
         
+         if username in sre:
+            return "PKISRE"
+        
     def retrieveSprint(self, username, sprintType):
         plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
@@ -121,9 +139,8 @@ class JiraHandler(object):
         #PKIAPI
         apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5267/sprint?state=' + sprintType
         
-        
         #PKISRE
-        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=' + sprintType
+        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5249/sprint?state=' + sprintType
        
         
         #MSSL
@@ -140,6 +157,9 @@ class JiraHandler(object):
         
         if username in mssl:
             return msslactiveSprint
+        
+        if username in sre:
+            return None
        
         
     def retrieveCategoryLabels(self, labels):
