@@ -22,7 +22,7 @@ class JiraHandler(object):
         username = self.data['user']['name']
 
         jiraproj = self.defineTeam(username)
-        currentSprint = self.getResults(self.retrieveActiveSprint(username))
+        currentSprint = self.getResults(self.retrieveSprint(username, "active"))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
         labels = self.retrieveTeamLabels(labels, username)
@@ -35,7 +35,7 @@ class JiraHandler(object):
         if currentSprint['values']:
             sprintId = currentSprint['values'][0]['id']
         else:
-            futureSprint1 = self.getResults(futureSprint)
+            futureSprint1 = self.getResults(self.retrieveSprint(username, "future"))
             sprintId = futureSprint1['values'][0]['id']
         x = {
             "fields":
@@ -105,7 +105,7 @@ class JiraHandler(object):
         if username in mssl:
             return "MSSL"
         
-    def retrieveActiveSprint(self, username):
+    def retrieveSprint(self, username, sprintType):
         plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
         client = ['mxpatterson', 'rmartin', 'bfeddern']
@@ -113,21 +113,21 @@ class JiraHandler(object):
         api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
         
         #PKIPLAT
-        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5268/sprint?state=active'
+        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5268/sprint?state=' + sprintType
               
         #PKICLIENT
-        clientactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5266/sprint?state=active'
+        clientactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5266/sprint?state=' + sprintType
         
         #PKIAPI
-        apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5267/sprint?state=active'
+        apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5267/sprint?state=' + sprintType
         
         
         #PKISRE
-        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=' + sprintType
        
         
         #MSSL
-        msslactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5134/sprint?state=active'
+        msslactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5134/sprint?state=' + sprintType
         
         if username in plat:
             return platactiveSprint
