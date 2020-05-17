@@ -52,7 +52,7 @@ class JiraHandler(object):
                     "assignee" : {"name" : username}
                 }
             }
-         else:
+        else:
             x = {
                 "fields":
                 {
