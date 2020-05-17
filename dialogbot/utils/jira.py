@@ -13,7 +13,7 @@ class JiraHandler(object):
         futureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
         
-        jiraproj = self.defineTeam(username)
+       
         
         #transition to done
         transitionStr = '{"transition": {"id": "251"}}'
@@ -21,6 +21,7 @@ class JiraHandler(object):
         submission = self.data['submission']
         username = self.data['user']['name']
 
+        jiraproj = self.defineTeam(username)
         currentSprint = self.getResults(self.retrieveActiveSprint(username))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
