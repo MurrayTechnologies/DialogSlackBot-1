@@ -22,8 +22,7 @@ class JiraHandler(object):
 
         jiraproj = self.defineTeam(username)
         
-        transitionId = self.retrieveDoneTransitionId(jiraproj)
-        transitionStr = '{"transition": {"id": "31"}}'
+       
         currentSprint = self.getResults(self.retrieveSprint(username, "active"))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
@@ -80,8 +79,13 @@ class JiraHandler(object):
         if response.status_code == 201:
             rr = json.loads(response.content)
             #print (rr)
-
-            self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
+            
+            if team != "PKISRE":
+                transitionStr = '{"transition": {"id": "31"}}'
+                self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
+            else:
+                transitionStr = '{"transition": {"id": "3"}}'
+                self.postResponse(transitionurl.format(key=rr['key']), transitionStr)
 
         return rr['key']
 
@@ -105,8 +109,8 @@ class JiraHandler(object):
         return 1
     
     def defineTeam(self, username):
-        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri','mmurray']
-        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
+        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri']
+        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1','mmurray']
         client = ['mxpatterson', 'rmartin', 'bfeddern']
         mssl = ['kcrawford', 'ycampo']
         api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
