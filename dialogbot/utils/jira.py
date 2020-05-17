@@ -91,7 +91,7 @@ class JiraHandler(object):
         mssl = ['kcrawford', 'ycampo']
         api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
         
-         if username in plat:
+        if username in plat:
             return "PKIPLAT"
 
         if username in client:
