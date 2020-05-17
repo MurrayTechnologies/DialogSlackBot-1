@@ -120,7 +120,7 @@ class JiraHandler(object):
         if username in mssl:
             return "MSSL"
         
-         if username in sre:
+        if username in sre:
             return "PKISRE"
         
     def retrieveSprint(self, username, sprintType):
