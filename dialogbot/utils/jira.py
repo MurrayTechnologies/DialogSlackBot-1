@@ -13,13 +13,33 @@ class JiraHandler(object):
         futureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
         transitionurl = 'https://jira.godaddy.com/rest/api/2/issue/{key}/transitions?expand=transitions.fields'
 
+        #PKIPLAT
+        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        platfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        
+        #PKICLIENT
+        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        platfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        
+        #PKIAPI
+        apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        apifutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        
+        #PKISRE
+        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        srefutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        
+        #MSSL
+        msslactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+        msslfutureSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=future'
+        
         #transition to done
         transitionStr = '{"transition": {"id": "251"}}'
         createjira = 'https://jira.godaddy.com/rest/api/2/issue'
         submission = self.data['submission']
         username = self.data['user']['name']
 
-        currentSprint = self.getResults(activeSprint)
+        currentSprint = self.getResults(self.retrieveActiveSprint(username))
         labels = ['Interruption']
         labels = self.retrieveCategoryLabels(labels)
         labels = self.retrieveTeamLabels(labels, username)
@@ -83,6 +103,43 @@ class JiraHandler(object):
 
         return 1
 
+    def retrieveActiveSprint(self, username):
+        plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri']
+        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
+        client = ['mxpatterson', 'rmartin', 'bfeddern']
+        mssl = ['kcrawford', 'ycampo']
+        api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
+        
+        #PKIPLAT
+        platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5268/sprint?state=active'
+              
+        #PKICLIENT
+        clientactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5266/sprint?state=active'
+        
+        #PKIAPI
+        apiactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5267/sprint?state=active'
+        
+        
+        #PKISRE
+        sreactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/373/sprint?state=active'
+       
+        
+        #MSSL
+        msslactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5134/sprint?state=active'
+        
+        if username in plat:
+            return platactiveSprint
+
+        if username in client:
+            return clientactiveSprint
+        
+        if username in api:
+            return apiactiveSprint
+        
+        if username in mssl:
+            return msslactiveSprint
+       
+        
     def retrieveCategoryLabels(self, labels):
         submission = self.data['submission']
         if submission['category_1'] != 'None':
