@@ -133,9 +133,9 @@ class JiraHandler(object):
     def retrieveSprint(self, username, sprintType):
         plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri', 'mmurray']
         sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
-        client = ['mxpatterson', 'rmartin', 'bfeddern']
+        client = ['mxpatterson', 'rmartin', 'bfeddern', 'sdeitte']
         mssl = ['kcrawford', 'ycampo']
-        api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
+        api = ['rjasmin', 'ppettong', 'jpogue']
         
         #PKIPLAT
         platactiveSprint = 'https://jira.godaddy.com/rest/agile/1.0/board/5268/sprint?state=' + sprintType
