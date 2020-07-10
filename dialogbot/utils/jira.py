@@ -110,10 +110,10 @@ class JiraHandler(object):
     
     def defineTeam(self, username):
         plat = ['bhodge', 'schang', 'jkramer1', 'mgilhool', 'astokes', 'meljuga', 'achiliveri']
-        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1','mmurray']
-        client = ['mxpatterson', 'rmartin', 'bfeddern']
+        sre = ['lcurran', 'jgorz','jdharano', 'ddubovik', 'tgraham', 'glopez', 'dwilliams1']
+        client = ['mxpatterson', 'rmartin', 'bfeddern','sdeitte']
         mssl = ['kcrawford', 'ycampo']
-        api = ['sdeitte', 'rjasmin', 'ppettong', 'jpogue']
+        api = ['rjasmin', 'ppettong', 'jpogue', 'mmurray']
         
         if username in plat:
             return "PKIPLAT"
